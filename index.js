@@ -4,7 +4,7 @@ const github = require('@actions/github');
 async function run() {
   try {
     console.log("inside run");
-    const packageName = core.getInput('package-name');
+    const packageName = "my-package:sha-ef14365"; //core.getInput('package-name');
      const token = core.getInput('token');
     const octokit = github.getOctokit(token);
     console.log("inside run", packageName, token, octokit);
