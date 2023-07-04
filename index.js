@@ -6,6 +6,7 @@ async function run() {
     console.log("inside run");
     const packageName = core.getInput('package-name');
     const octokit = github.getOctokit(core.getInput('token'));
+    console.log("inside run",packageName,octokit);
     const { data: metadata } = await octokit.request('GET /packages/container/{package_name}', {
       package_name: packageName
     });
