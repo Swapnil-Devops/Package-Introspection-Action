@@ -8,7 +8,7 @@ async function run() {
      const token = core.getInput('token');
     const octokit = github.getOctokit(token);
     console.log("inside run", packageName, token, octokit);
-    const { data: metadata } = await octokit.request('GET /packages/container/{package_name}', {
+    const { data: metadata } = await octokit.request('GET https://github.com/Swapnil-Devops/my-package/pkgs/container/my-package', {
       package_name: packageName
     });
     console.log("metadata", metadata)
