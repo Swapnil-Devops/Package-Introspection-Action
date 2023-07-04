@@ -5,11 +5,13 @@ async function run() {
   try {
     console.log("inside run");
     const packageName = core.getInput('package-name');
-    const octokit = github.getOctokit(core.getInput('token'));
-    console.log("inside run",packageName,octokit);
+     const token = core.getInput('token');
+    const octokit = github.getOctokit(token);
+    console.log("inside run", packageName, token, octokit);
     const { data: metadata } = await octokit.request('GET /packages/container/{package_name}', {
       package_name: packageName
     });
+    console.log("metadata", metadata)
     core.setOutput('package-metadata', JSON.stringify(metadata));
   } catch (error) {
     core.setFailed("action error"+error.message);
