@@ -3,6 +3,7 @@ const github = require('@actions/github');
 
 async function run() {
   try {
+    console.log("inside run");
     const packageName = core.getInput('package-name');
     const octokit = github.getOctokit(core.getInput('token'));
     const { data: metadata } = await octokit.request('GET /packages/container/{package_name}', {
@@ -10,7 +11,7 @@ async function run() {
     });
     core.setOutput('package-metadata', JSON.stringify(metadata));
   } catch (error) {
-    core.setFailed(error.message);
+    core.setFailed("action error"+error.message);
   }
 }
 
